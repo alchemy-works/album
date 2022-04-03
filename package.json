@@ -1,0 +1,32 @@
+{
+  "name": "album",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel src/**/*.html",
+    "build": "parcel build src/**/*.html && cp -R public/* dist",
+    "clean": "rm -rf dist .parcel-cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchemy-works/album.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alchemy-works/album/issues"
+  },
+  "homepage": "https://github.com/alchemy-works/album#readme",
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "parcel": "^2.4.1"
+  },
+  "dependencies": {
+    "@emotion/styled": "^11.8.1",
+    "file-saver": "^2.0.5",
+    "jszip": "^3.8.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
