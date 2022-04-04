@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en" unique-identifier="pub-id">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:language>zh-CN</dc:language>
+        <meta property="dcterms:modified">1970-01-01T00:00:00Z</meta>
+        <dc:identifier id="pub-id">${identifier}</dc:identifier>
+        <dc:rights>${rights}</dc:rights>
+        <dc:creator>${creator}</dc:creator>
+        <dc:contributor>${contributor}</dc:contributor>
+        <dc:title>${title}</dc:title>
+        <dc:subject>${subject}</dc:subject>
+        <dc:source>${source}</dc:source>
+    </metadata>
+    <manifest>
+        <item id="toc" properties="nav" href="toc.xhtml" media-type="application/xhtml+xml"/>
+        <item id="style" href="stylesheet.css" media-type="text/css"/>
+        <item id="page0" href="page0.xhtml" media-type="application/xhtml+xml"/>
+        ${items}
+    </manifest>
+    <spine>
+        <itemref linear="yes" idref="page0"/>
+    </spine>
+</package>
