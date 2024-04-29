@@ -13,7 +13,6 @@ async function templated(name) {
     let item = cache.get(name)
     if (!item) {
         const url = new URL('templates/ebook/' + name, ASSETS_BASE)
-        console.log(ASSETS_BASE, url)
         const response = await fetch(url)
         item = await response.text()
         cache.set(name, item)

@@ -4,91 +4,118 @@ import saveAs from 'file-saver'
 import { createBook } from './epub.js'
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 75vh;
-
-  & .form-box {
-    height: 70%;
-    width: 100%;
-    padding: 2rem;
     display: flex;
-    justify-content: center;
+    box-sizing: border-box;
+    padding: 1rem;
     align-items: center;
+    min-height: 100vh;
     flex-direction: column;
-  }
-  
-  & table {
-    width: 100%;
-    max-width: 400px;
-  }
 
-  & .text-center {
-    text-align: center;
-  }
-
-  & input {
-    width: 100%;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #000;
-    text-align: center;
-    
-    &:disabled {
-      background-color: inherit;
-    }
-  }
-
-  & span.selector {
-    box-sizing: border-box;
-    border-radius: 2px;
-    font-size: .875rem;
-    padding: .125rem 2rem;
-    border: 1px dashed #999;
-  }
-
-  & span.ellipsis {
-    display: block;
-    color: #999999;
-    max-width: 380px;
-    font-size: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    cursor: default;
-  }
-
-  & button.submit {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    box-sizing: border-box;
-    border: 1px solid #000;
-    border-radius: 2px;
-    background-color: #fff;
-    transition: color, background-color 200ms;
-    cursor: pointer;
-    padding-left: .5rem;
-    padding-right: .5rem;
-
-    &:hover {
-      color: #fff;
-      background-color: #000;
+    .title {
+        font-size: 1.5rem;
+        font-weight: bold;
     }
 
-    &:active {
-      transform: scale(0.95, 0.95);
-      color: #fff;
-      background-color: #000;
+    .form-box {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
-    &:disabled {
-      opacity: .75;
-      color: #000;
-      background-color: #fff;
-      cursor: not-allowed;
+    table {
+        width: 100%;
+        max-width: 400px;
+        border: 1px solid #111;
+        border-collapse: collapse;
+
+        td {
+            padding: .25rem .5rem;
+            border: 1px solid #111;
+        }
     }
-  }
+
+    .text-center {
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+        outline: none;
+        border: none;
+        text-align: center;
+
+        &:disabled {
+            background-color: inherit;
+        }
+    }
+
+    span.selector {
+        box-sizing: border-box;
+        border-radius: 2px;
+        font-size: .875rem;
+        padding: .125rem 2rem;
+        border: 1px dashed #999;
+    }
+
+    span.ellipsis {
+        display: block;
+        color: #999999;
+        max-width: 380px;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: default;
+    }
+
+    label {
+        display: inline-block;
+        height: max-content;
+        position: relative;
+
+        input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+    }
+
+    .btn {
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        box-sizing: border-box;
+        font-size: 1rem;
+        line-height: 1.5;
+        border: 1px solid #000;
+        border-radius: 2px;
+        background-color: #fff;
+        transition: color, background-color 200ms;
+        cursor: pointer;
+        padding: .25rem .5rem;
+
+        :hover {
+            color: #fff;
+            background-color: #000;
+        }
+
+        :active {
+            transform: scale(0.95, 0.95);
+            color: #fff;
+            background-color: #000;
+        }
+
+        :disabled {
+            opacity: .75;
+            color: #000;
+            background-color: #fff;
+            cursor: not-allowed;
+        }
+    }
 `
 
 export default function Album(props) {
@@ -132,27 +159,28 @@ export default function Album(props) {
 
     return (
         <Container>
+            <div className="title">Album Creator</div>
             <form className="form-box" onSubmit={handleSubmit}>
                 <table>
                     <tbody>
                     <tr>
                         <td className="text-center">Title</td>
-                        <td><input disabled={loading} type="text" name="title" placeholder="Enter"/></td>
+                        <td><input disabled={loading} type="text" name="title" placeholder="Enter title"/></td>
                     </tr>
                     <tr>
                         <td className="text-center">Creator</td>
-                        <td><input disabled={loading} type="text" name="creator" placeholder="Enter"/></td>
+                        <td><input disabled={loading} type="text" name="creator" placeholder="Enter create user"/></td>
                     </tr>
                     <tr>
                         <td className="text-center">Filename</td>
-                        <td><input disabled={loading} type="text" name="filename" placeholder="Enter"/></td>
+                        <td><input disabled={loading} type="text" name="filename" placeholder="Enter filename"/></td>
                     </tr>
                     <tr>
                         <td className="text-center">Images</td>
                         <td className="text-center">
-                            <label style={{ cursor: 'pointer', marginTop: '1rem', }}>
-                                <span className="selector">Select</span>
-                                <input style={{ display: 'none' }} disabled={loading} type="file"
+                            <label>
+                                <span className="btn">Select images</span>
+                                <input disabled={loading} type="file"
                                        onChange={handleFilesSelected}
                                        name="images" required multiple accept=".jpg,.jpeg,.png,.gif"/>
                             </label>
@@ -169,7 +197,7 @@ export default function Album(props) {
                     )}
                     <tr>
                         <td className="text-center" colSpan="2">
-                            <button className="submit" disabled={loading}>Create Album</button>
+                            <button className="btn" disabled={loading}>Create Album</button>
                             <br/>
                             <span style={{ marginTop: '1rem', }}>
                                 {loading && 'Book creating...'}
