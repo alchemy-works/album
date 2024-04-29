@@ -6,7 +6,7 @@ settings:
 
 devDependencies:
   '@emotion/styled':
-    specifier: ^11.8.1
+    specifier: ^11.11.5
     version: 11.11.5(@emotion/react@11.11.4)(react@18.3.1)
   buffer:
     specifier: ^6.0.3
@@ -15,19 +15,19 @@ devDependencies:
     specifier: ^2.0.5
     version: 2.0.5
   jszip:
-    specifier: ^3.8.0
+    specifier: ^3.10.1
     version: 3.10.1
   parcel:
-    specifier: ^2.4.1
+    specifier: ^2.12.0
     version: 2.12.0
   process:
     specifier: ^0.11.10
     version: 0.11.10
   react:
-    specifier: ^18.0.0
+    specifier: ^18.3.1
     version: 18.3.1
   react-dom:
-    specifier: ^18.0.0
+    specifier: ^18.3.1
     version: 18.3.1(react@18.3.1)
 
 packages:
